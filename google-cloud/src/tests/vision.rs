@@ -13,7 +13,7 @@ macro_rules! assert_ok {
 
 async fn setup_client() -> Result<vision::Client, vision::Error> {
     let creds = super::load_creds();
-    vision::Client::from_credentials(env!("GCP_TEST_PROJECT"), creds).await
+    vision::Client::from_credentials(env!("GCP_PROJECT_NAME"), creds).await
 }
 
 #[tokio::test]

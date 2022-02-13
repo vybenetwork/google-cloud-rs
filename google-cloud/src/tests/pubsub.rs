@@ -28,7 +28,7 @@ macro_rules! assert_some {
 
 async fn setup_client() -> Result<pubsub::Client, pubsub::Error> {
     let creds = super::load_creds();
-    pubsub::Client::from_credentials(env!("GCP_TEST_PROJECT"), creds).await
+    pubsub::Client::from_credentials(env!("GCP_PROJECT_NAME"), creds).await
 }
 
 #[tokio::test]
@@ -82,7 +82,7 @@ async fn pubsub_sends_and_receives_message_successfully() {
         name: "hello",
         value: "world !",
     };
-    let message = assert_ok!(json::to_vec(&data));
+    let message = assert_ok!(vec!(json::to_vec(&data)));
     println!("OK !");
 
     //? Publish that message onto the topic.
